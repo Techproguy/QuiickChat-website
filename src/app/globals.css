@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------------------------------------------------------------------- */
+/* Quiick Chat design tokens — sourced from the Product Bible DESIGN_SYSTEM */
+/* Dark ("Emerald Glass") is the signature/default theme. Light ("Slate    */
+/* Neutrals") is a fully-tuned, first-class alternative — never an         */
+/* afterthought. The accent green is theme-dependent, never a single hex.  */
+/* ---------------------------------------------------------------------- */
+
+:root {
+  --background: #090c10;
+  --surface: #12161c;
+  --card: #171c23;
+  --elevated: #1e242d;
+  --on-accent: #04160b;
+
+  --accent: #33ce7c;
+  --accent-bright: #6fe6a8;
+  --accent-soft: rgba(51, 206, 124, 0.14);
+  --accent-alt: #64ffda;
+  --accent-glow: rgba(51, 206, 124, 0.35);
+  /* AA-safe variant of --accent for standalone text (links, labels) on --background.
+     Dark theme's accent already clears 4.5:1, so this matches it exactly. */
+  --accent-text: #33ce7c;
+
+  --foreground: #e9eef0;
+  --muted: #8b95a0;
+  --subtle: #566069;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --divider: rgba(255, 255, 255, 0.06);
+
+  --online: #35d07e;
+  --danger: #ff5252;
+  --warning: #ffb020;
+
+  --glass-tint: rgba(20, 26, 33, 0.72);
+
+  --sender-top: #123726;
+  --sender-bottom: #0f2c1e;
+  --sender-edge: rgba(96, 235, 166, 0.26);
+  --sender-text: #eaf7ef;
+  --receiver-top: #1e242d;
+  --receiver-bottom: #171c23;
+
+  --aurora-a: rgba(28, 104, 68, 0.22);
+  --aurora-b: rgba(24, 46, 78, 0.2);
+
+  /* Both stops stay >=4.5:1 on --background so the gradient headline is AA-safe. */
+  --gradient-from: var(--accent-bright);
+  --gradient-to: var(--accent);
+
+  --shadow-e1: 0 1px 2px rgba(0, 0, 0, 0.24), 0 1px 1px rgba(0, 0, 0, 0.16);
+  --shadow-e2: 0 8px 24px rgba(0, 0, 0, 0.32), 0 2px 8px rgba(0, 0, 0, 0.24);
+  --shadow-e3: 0 24px 64px rgba(0, 0, 0, 0.44), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 64px 4px var(--accent-glow);
+}
+
+[data-theme="light"] {
+  --background: #f3f6fa;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --elevated: #f1f5f9;
+  --on-accent: #ffffff;
+
+  --accent: #16c55b;
+  --accent-bright: #1ed760;
+  --accent-soft: rgba(22, 197, 91, 0.18);
+  --accent-alt: #0ea5a5;
+  --accent-glow: rgba(22, 197, 91, 0.22);
+  /* #16c55b only reaches ~2:1 on this light background — nowhere near the 4.5:1
+     WCAG AA text needs. This darker shade of the same brand green is for
+     standalone text (links, labels) only; backgrounds/icons keep --accent. */
+  --accent-text: #0c823a;
+  --gradient-from: #0c823a;
+  --gradient-to: #0a6c2f;
+
+  --foreground: #0f172a;
+  --muted: #5f6f86;
+  --subtle: #94a3b8;
+
+  --border: rgba(51, 65, 85, 0.09);
+  --divider: rgba(51, 65, 85, 0.07);
+
+  --online: #16c55b;
+  --danger: #e5484d;
+  --warning: #d97706;
+
+  --glass-tint: rgba(255, 255, 255, 0.6);
+
+  --sender-top: #e4f6ec;
+  --sender-bottom: #dcf3e6;
+  --sender-edge: rgba(22, 197, 91, 0.22);
+  --sender-text: #0f172a;
+  --receiver-top: #ffffff;
+  --receiver-bottom: #f8fafc;
+
+  --aurora-a: rgba(22, 197, 91, 0.14);
+  --aurora-b: rgba(14, 165, 165, 0.1);
+
+  --shadow-e1: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-e2: 0 8px 24px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-e3: 0 24px 64px rgba(15, 23, 42, 0.12), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 0 64px 4px var(--accent-glow);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-elevated: var(--elevated);
+  --color-on-accent: var(--on-accent);
+
+  --color-accent: var(--accent);
+  --color-accent-bright: var(--accent-bright);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-alt: var(--accent-alt);
+  --color-accent-text: var(--accent-text);
+
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+
+  --color-border: var(--border);
+  --color-divider: var(--divider);
+
+  --color-online: var(--online);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+
+  --font-sans: var(--font-plus-jakarta-sans);
+
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-orb-pulse: orb-pulse 3.2s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes orb-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    color-scheme: dark;
+  }
+
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "ss01" on, "cv01" on;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .shadow-e1 {
+    box-shadow: var(--shadow-e1);
+  }
+  .shadow-e2 {
+    box-shadow: var(--shadow-e2);
+  }
+  .shadow-e3 {
+    box-shadow: var(--shadow-e3);
+  }
+
+  .glass {
+    background: var(--glass-tint);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+  }
+
+  .text-gradient {
+    background: linear-gradient(120deg, var(--gradient-from), var(--gradient-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glow-ring {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
