@@ -22,7 +22,7 @@ export const APP = {
     "https://play.google.com/store/apps/details?id=com.sanga.quickchat",
 } as const;
 
-export type InviteKind = "group" | "space" | "channel";
+export type InviteKind = "group" | "space" | "channel" | "contact";
 
 /** The custom-scheme deep link the browser attempts first. */
 export function deepLink(kind: InviteKind, id: string): string {
