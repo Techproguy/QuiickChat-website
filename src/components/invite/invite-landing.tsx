@@ -13,12 +13,14 @@ const KIND_LABEL: Record<InviteKind, string> = {
   group: "group",
   space: "Space",
   channel: "channel",
+  contact: "contact",
 };
 
 const KIND_VERB: Record<InviteKind, string> = {
   group: "join",
   space: "join",
   channel: "follow",
+  contact: "add",
 };
 
 export function InviteLanding({
@@ -95,7 +97,7 @@ export function InviteLanding({
           </h1>
           <p className="mt-2 text-sm text-muted">
             {subtitle ??
-              `${KIND_VERB[kind] === "follow" ? "Follow" : "Join"} this ${KIND_LABEL[kind]} on ${APP.name}.`}
+              `${KIND_VERB[kind].charAt(0).toUpperCase()}${KIND_VERB[kind].slice(1)} this ${KIND_LABEL[kind]} on ${APP.name}.`}
           </p>
 
           <div className="mt-8">
