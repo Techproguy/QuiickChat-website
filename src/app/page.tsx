@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/hero";
 import { ProblemSection } from "@/components/sections/problem";
 import { OverviewGrid } from "@/components/sections/overview-grid";
 import { ScrollPhoneNarrator } from "@/components/sections/scroll-phone-narrator";
+import { Communities } from "@/components/sections/communities";
 import { AISuite } from "@/components/sections/ai-suite";
 import { Trust } from "@/components/sections/trust";
 import { FinalCTA } from "@/components/sections/final-cta";
@@ -17,6 +18,7 @@ export default function Home() {
         <ProblemSection />
         <OverviewGrid />
         <ScrollPhoneNarrator />
+        <Communities />
         <AISuite />
         <Trust />
         <FinalCTA />

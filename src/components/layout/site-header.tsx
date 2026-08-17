@@ -1,17 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "#product", label: "Product" },
-  { href: "#ai-suite", label: "AI Suite" },
-  { href: "#security", label: "Security" },
-  { href: "#join", label: "Community" },
+  { href: "/#product", label: "Product" },
+  { href: "/#communities", label: "Communities" },
+  { href: "/#ai-suite", label: "AI Suite" },
+  { href: "/security", label: "Security" },
+  { href: "/help", label: "Help" },
 ];
 
 export function SiteHeader() {
@@ -39,9 +41,9 @@ export function SiteHeader() {
             scrolled ? "glass shadow-e2" : "bg-transparent"
           )}
         >
-          <a href="#top" className="flex items-center" aria-label="Quiick Chat home">
+          <Link href="/" className="flex items-center" aria-label="Quiick Chat home">
             <Logo />
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
             {NAV_LINKS.map((link) => (
@@ -57,12 +59,18 @@ export function SiteHeader() {
 
           <div className="hidden items-center gap-2 md:flex">
             <ThemeToggle />
-            <Button variant="ghost" size="sm">
-              Sign in
-            </Button>
-            <Button variant="primary" size="sm">
+            <Link
+              href="/help"
+              className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
+            >
+              Help
+            </Link>
+            <Link
+              href="/download"
+              className={cn(buttonVariants({ variant: "primary", size: "sm" }))}
+            >
               Get Quiick Chat
-            </Button>
+            </Link>
           </div>
 
           <div className="flex items-center gap-1 md:hidden">
@@ -93,8 +101,20 @@ export function SiteHeader() {
               ))}
             </nav>
             <div className="mt-5 flex flex-col gap-3">
-              <Button variant="secondary">Sign in</Button>
-              <Button variant="primary">Get Quiick Chat</Button>
+              <Link
+                href="/help"
+                onClick={() => setOpen(false)}
+                className={cn(buttonVariants({ variant: "secondary" }))}
+              >
+                Help Center
+              </Link>
+              <Link
+                href="/download"
+                onClick={() => setOpen(false)}
+                className={cn(buttonVariants({ variant: "primary" }))}
+              >
+                Get Quiick Chat
+              </Link>
             </div>
           </div>
         )}

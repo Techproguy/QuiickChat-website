@@ -3,7 +3,7 @@ import { PhoneStatusBar } from "../phone-frame";
 import { PhoneBottomNav } from "../phone-bottom-nav";
 import { cn } from "@/lib/utils";
 
-const FILTERS = ["All", "Unread", "Groups", "Spaces"];
+const FILTERS = ["All", "Unread", "Groups", "Communities"];
 
 const CHATS = [
   {

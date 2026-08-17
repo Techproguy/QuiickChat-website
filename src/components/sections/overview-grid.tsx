@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, Hash, Heart, MessageCircle, Phone, Users } from "lucide-react";
+import { ArrowRight, Bot, Heart, MessageCircle, Phone, Users } from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Reveal, RevealGroup } from "@/components/ui/reveal";
 import { fadeUp } from "@/lib/motion";
@@ -10,32 +11,27 @@ const PILLARS = [
   {
     icon: MessageCircle,
     name: "Chats",
-    desc: "Messages that matter, with AI right in the composer.",
-  },
-  {
-    icon: Heart,
-    name: "Memories",
-    desc: "Moments that live, then let go.",
-  },
-  {
-    icon: Users,
-    name: "Communities",
-    desc: "Spaces built around who you belong with.",
-  },
-  {
-    icon: Hash,
-    name: "Channels",
-    desc: "Focused conversation inside every Space.",
+    desc: "1:1 and group messaging that opens instantly — photos, voice notes, round video notes, reactions, replies, edits, and AI right in the composer.",
   },
   {
     icon: Phone,
     name: "Calls",
-    desc: "Voice and video, alive with every word.",
+    desc: "Crystal-clear voice and video, solo or group. Screen share, one-tap speaker, and live captions & translation that keep the conversation flowing.",
+  },
+  {
+    icon: Heart,
+    name: "Memories",
+    desc: "Share your day in photos and videos with music and effects — seen by exactly who you choose, gone when they should be.",
+  },
+  {
+    icon: Users,
+    name: "Communities",
+    desc: "A home for the people and audiences you belong with — organized Spaces and broadcast Channels, all in one place.",
   },
   {
     icon: Bot,
     name: "Quiick AI",
-    desc: "Ambient intelligence, everywhere you need it.",
+    desc: "Transcription, translation, smart replies, and summaries woven through everything you do — helpful, ambient, never a bolted-on chatbot.",
   },
 ];
 
@@ -76,6 +72,15 @@ export function OverviewGrid() {
             </motion.div>
           ))}
         </RevealGroup>
+
+        <Reveal className="mt-10 text-center">
+          <Link
+            href="/features"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-text hover:text-accent-bright"
+          >
+            See all features <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </Reveal>
       </Container>
     </section>
   );

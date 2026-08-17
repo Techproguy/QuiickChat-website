@@ -3,29 +3,35 @@
 import { motion } from "framer-motion";
 import {
   AudioLines,
+  Captions,
+  Globe,
   Languages,
+  MessageSquareText,
   Mic,
   NotebookPen,
   PenLine,
   Sparkles,
+  UsersRound,
   Volume2,
 } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { Pill } from "@/components/ui/pill";
 import { Reveal, RevealGroup } from "@/components/ui/reveal";
-import { AIOrb } from "@/components/ui/ai-orb";
 import { fadeUp } from "@/lib/motion";
 
 const CAPABILITIES = [
   {
     icon: Mic,
     name: "Speech-to-Text",
-    desc: "Voice notes and calls, transcribed the moment they happen.",
+    desc: "Voice notes transcribed the moment they arrive.",
   },
   {
-    icon: Volume2,
-    name: "AI Voice Playback",
-    desc: "Have any message — yours or translated — read aloud naturally.",
+    icon: Captions,
+    name: "Live Call Captions",
+    desc: "A running transcript on screen while you're on a call.",
   },
   {
     icon: Languages,
@@ -33,17 +39,42 @@ const CAPABILITIES = [
     desc: "Read any message in your language, right where it was sent.",
   },
   {
-    icon: AudioLines,
-    name: "Translate & Listen",
-    desc: "Read it and hear it, together — for languages you're still learning.",
+    icon: Globe,
+    name: "In-Call Translation",
+    desc: "What's said gets translated, live, mid-conversation.",
   },
   {
-    icon: PenLine,
-    name: "AI Writing",
-    desc: "Smart replies and writing help that sound like you, not a bot.",
+    icon: UsersRound,
+    name: "Per-Speaker Transcripts",
+    desc: "Calls transcribed with who-said-what attribution.",
   },
   {
     icon: NotebookPen,
+    name: "Post-Call Summary & Notes",
+    desc: "The gist and action items, right after you hang up.",
+  },
+  {
+    icon: Volume2,
+    name: "AI Voice Playback",
+    desc: "Have any message — yours or translated — read aloud naturally.",
+  },
+  {
+    icon: AudioLines,
+    name: "Translate & Listen",
+    desc: "Read it and hear it together, for languages you're learning.",
+  },
+  {
+    icon: PenLine,
+    name: "AI Writing & Smart Replies",
+    desc: "Fix grammar, rephrase a draft, or reply in a tap — it sounds like you.",
+  },
+  {
+    icon: Mic,
+    name: "Dictation",
+    desc: "Speak your message and watch it type into the composer.",
+  },
+  {
+    icon: MessageSquareText,
     name: "Conversation Summaries",
     desc: "Catch up on a long thread — or a whole Space — in seconds.",
   },
@@ -76,12 +107,23 @@ export function AISuite() {
           </p>
         </Reveal>
 
-        <Reveal className="mx-auto mt-16 flex justify-center" delay={0.1}>
-          <div className="relative grid place-items-center">
-            <AIOrb size="xl" rings />
-            <span className="absolute text-xs font-bold uppercase tracking-widest text-on-accent mix-blend-difference">
-              Quiick AI
-            </span>
+        <Reveal className="mx-auto mt-14 flex justify-center" delay={0.1}>
+          <div className="relative h-56 w-56 sm:h-64 sm:w-64">
+            <Image
+              src="/quiick-ai-dark.png"
+              alt="Quiick AI"
+              fill
+              sizes="256px"
+              priority
+              className="hidden object-contain dark:block"
+            />
+            <Image
+              src="/quiick-ai-light.png"
+              alt=""
+              fill
+              sizes="256px"
+              className="object-contain dark:hidden"
+            />
           </div>
         </Reveal>
 
@@ -104,13 +146,18 @@ export function AISuite() {
           ))}
         </RevealGroup>
 
-        <Reveal className="mx-auto mt-10 max-w-2xl text-center" delay={0.1}>
+        <Reveal className="mx-auto mt-10 flex max-w-2xl flex-col items-center gap-4 text-center" delay={0.1}>
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-elevated px-4 py-2 text-xs text-muted">
             <Sparkles className="h-3.5 w-3.5 text-accent" />
-            Call transcription &amp; in-call translation are rolling out next
-            — and every AI surface is opt-in, and honest when it isn&apos;t
-            available yet.
+            Every AI surface is opt-in — and honest when it isn&apos;t available
+            yet.
           </p>
+          <Link
+            href="/features#ai"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-text hover:text-accent-bright"
+          >
+            See all Quiick AI features <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
         </Reveal>
       </Container>
     </section>

@@ -1,14 +1,35 @@
 import type { MetadataRoute } from "next";
+import { HELP_CATEGORIES } from "@/content/help";
+import { BLOG_POSTS } from "@/content/blog";
 
 const SITE_URL = "https://quiickchat.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/privacy", "/terms"];
+  const now = new Date().toISOString();
 
-  return routes.map((route) => ({
+  const staticRoutes = [
+    "",
+    "/features",
+    "/download",
+    "/security",
+    "/about",
+    "/careers",
+    "/brand",
+    "/blog",
+    "/help",
+    "/privacy",
+    "/terms",
+  ];
+  const helpRoutes = HELP_CATEGORIES.flatMap((c) => [
+    `/help/${c.slug}`,
+    ...c.articles.map((a) => `/help/${c.slug}/${a.slug}`),
+  ]);
+  const blogRoutes = BLOG_POSTS.map((p) => `/blog/${p.slug}`);
+
+  return [...staticRoutes, ...helpRoutes, ...blogRoutes].map((route) => ({
     url: `${SITE_URL}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: route === "" ? "weekly" : "yearly",
-    priority: route === "" ? 1 : 0.3,
+    lastModified: now,
+    changeFrequency: route === "" ? "weekly" : "monthly",
+    priority: route === "" ? 1 : route === "/help" ? 0.7 : 0.5,
   }));
 }

@@ -46,7 +46,7 @@ export function FinalCTA() {
           </div>
 
           <a
-            href="#top"
+            href="/#communities"
             className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-text hover:text-accent-bright"
           >
             Explore Communities on Quiick Chat <ArrowRight className="h-3.5 w-3.5" />

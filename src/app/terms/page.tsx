@@ -2,30 +2,47 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { LEGAL_META, TERMS_OF_SERVICE } from "@/content/legal";
+import { APP } from "@/lib/app-links";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "The terms that govern your use of Quiick Chat.",
+  title: `Terms of Service — ${APP.name}`,
+  description: `The terms that govern your use of ${APP.name}.`,
 };
 
 export default function TermsPage() {
   return (
     <>
       <SiteHeader />
-      <main id="main-content" className="pb-24 pt-40">
+      <main id="main-content" className="pb-24 pt-36 sm:pt-40">
         <Container>
           <div className="mx-auto max-w-2xl">
-            <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-text">
+              Legal
+            </p>
+            <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-foreground">
               Terms of Service
             </h1>
-            <p className="mt-4 text-sm text-muted">Last updated: placeholder</p>
+            <p className="mt-3 text-sm text-muted">{LEGAL_META.effectiveDate}</p>
 
-            <div className="mt-10 space-y-6 text-[15px] leading-relaxed text-muted">
-              <p>
-                This is placeholder legal copy for the website build — replace
-                it with Quiick Chat&apos;s reviewed terms of service before
-                launch.
-              </p>
+            <div className="mt-10 space-y-10">
+              {TERMS_OF_SERVICE.map((section) => (
+                <section key={section.heading}>
+                  <h2 className="text-lg font-bold text-foreground">
+                    {section.heading}
+                  </h2>
+                  <div className="mt-3 space-y-3">
+                    {section.paragraphs.map((p, i) => (
+                      <p
+                        key={i}
+                        className="text-[15px] leading-relaxed text-muted"
+                      >
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                </section>
+              ))}
             </div>
           </div>
         </Container>

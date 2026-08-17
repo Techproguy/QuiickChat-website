@@ -28,36 +28,45 @@ function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+// Homepage-section links are prefixed with "/" so they also work from
+// sub-pages (navigate home, then scroll to the anchor).
 const COLUMNS = [
   {
     title: "Product",
     links: [
-      { label: "Chats", href: "#product" },
-      { label: "Memories", href: "#product" },
-      { label: "Communities", href: "#product" },
-      { label: "Calls", href: "#product" },
-      { label: "Quiick AI", href: "#ai-suite" },
+      { label: "Overview", href: "/#product" },
+      { label: "Features", href: "/features" },
+      { label: "Communities", href: "/#communities" },
+      { label: "Quiick AI", href: "/features#ai" },
+      { label: "Security", href: "/security" },
+      { label: "Download", href: "/download" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About", href: "#top" },
-      { label: "Careers", href: "#top" },
-      { label: "Blog", href: "#top" },
-      { label: "Brand", href: "#top" },
+      { label: "About", href: "/about" },
+      { label: "Careers", href: "/careers" },
+      { label: "Blog", href: "/blog" },
+      { label: "Brand", href: "/brand" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Support", href: "#top" },
-      { label: "Security", href: "#security" },
+      { label: "Help Center", href: "/help" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],
   },
 ];
+
+// Social profiles — update these to the real handles once the accounts exist.
+const SOCIAL = {
+  x: "https://x.com/quiickchat",
+  instagram: "https://instagram.com/quiickchat",
+  github: "https://github.com/Techproguy",
+};
 
 export function SiteFooter() {
   return (
@@ -72,21 +81,27 @@ export function SiteFooter() {
             </p>
             <div className="mt-5 flex items-center gap-3">
               <a
-                href="#top"
+                href={SOCIAL.x}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Quiick Chat on X"
                 className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted transition-colors hover:border-accent/40 hover:text-accent-text"
               >
                 <XIcon className="h-4 w-4" />
               </a>
               <a
-                href="#top"
+                href={SOCIAL.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Quiick Chat on Instagram"
                 className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted transition-colors hover:border-accent/40 hover:text-accent-text"
               >
                 <InstagramIcon className="h-4 w-4" />
               </a>
               <a
-                href="#top"
+                href={SOCIAL.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Quiick Chat on GitHub"
                 className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted transition-colors hover:border-accent/40 hover:text-accent-text"
               >
